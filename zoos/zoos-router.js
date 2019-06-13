@@ -1,21 +1,14 @@
-
+const db = require('./zoo-model')
 const router = require('express').Router();
 
 const knex = require('knex');
 
-const knexConfig = {
-    client: 'sqlite3',
-    useNullAsDefault: true,
-    connection: {
-        filename: './data/lambda.sqlite3'
-    }
-}
 
-const db = knex(knexConfig);
+
 
 router.get('/', (req, res) => {
     // get the roles from the database
-    db('zoos')
+    db.find()
     .then(zoos => {
       res.status(200).json(zoos);
     })
